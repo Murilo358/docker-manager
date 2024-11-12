@@ -17,8 +17,8 @@ public class DockerContainersController {
     }
 
 
-    @PostMapping("/start")
-    public void startContainer(@RequestParam(required = true) String containerId){
+    @PostMapping("/{containerId}/start")
+    public void startContainer(@PathVariable(required = true) String containerId){
         dockerService.startContainer(containerId);
     }
 
@@ -27,13 +27,13 @@ public class DockerContainersController {
         return dockerService.listAllContainers(listAllContainers);
     }
 
-    @PostMapping("/stop")
-    public void stopContainer(@RequestParam(required = true) String containerId){
+    @PostMapping("/{containerId}/stop")
+    public void stopContainer(@PathVariable(required = true) String containerId){
         dockerService.stopContainer(containerId);
     }
 
-    @PostMapping("/create")
-    public void createContainer(@RequestParam(required = true) String imageName){
+    @PostMapping("/{imageName}/create")
+    public void createContainer(@PathVariable(required = true) String imageName){
         dockerService.createNewContainer(imageName);
     }
 }
